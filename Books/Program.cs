@@ -1,9 +1,13 @@
+using Books.Data;
+using Books.Services.StudentService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-//builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
 
@@ -15,14 +19,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 app.UseRouting();
 
 app.MapControllers();
-//app.MapControllerRoute(
-  //  name: "default",
-    //pattern: "{controller}/{action=Index}/{id?}");
-
-//app.MapFallbackToFile("index.html");
 
 app.Run();
