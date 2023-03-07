@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { StudentDto } from '../model/student-dto';
+import { StudentDto, StudentEditRequest } from '../model/student-dto';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,5 +16,9 @@ export class StudentService{
 
   public getStudentsList(): Observable<StudentDto[]>{
     return this.httpClient.get<StudentDto[]>(this.baseUrl + 'student');
+  }
+
+  public addStudent(request: StudentEditRequest): Observable<StudentEditRequest>{
+    return this.httpClient.post<StudentEditRequest>(this.baseUrl + 'Add', request);
   }
 }

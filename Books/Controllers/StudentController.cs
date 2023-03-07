@@ -31,8 +31,8 @@ namespace Books.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<List<Student>>> AddStudentAsync([FromBody] Student request)
+        [HttpPost("Add")]
+        public async Task<ActionResult> AddStudentAsync([FromBody] StudentEditRequest request)
         {
             var result = await _studentService.AddStudentAsync(request);
 
